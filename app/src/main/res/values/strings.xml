@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">keep3</string>
+    <string name="title_activity_register1">register1</string>
+    <string name="title_activity_register4">register4</string>
+    <string name="title_activity_register5">register5</string>
+
+    <string name="weight">体重</string>
+    <string name="hint_weight">你的体重</string>
+    <string name="height">身高</string>
+    <string name="hint_height">你的身高</string>
+</resources>
