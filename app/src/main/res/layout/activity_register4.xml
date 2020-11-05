@@ -1,33 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".register4">
+    android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:orientation="vertical"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="完善个人信息"
+                android:gravity="center"
+                android:textSize="35dp"
+                android:layout_marginTop="100dp"/>
 
-    </com.google.android.material.appbar.AppBarLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="填写个人信息有助于热量计算"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"/>
 
-    <include layout="@layout/content_register4" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="您的性别"
+                android:layout_marginTop="30dp"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="50dp">
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+            <ImageButton
+                android:id="@+id/is_female"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:background="@color/white"
+                android:scaleType="center"
+                android:src="@drawable/female"
+                android:layout_marginRight="10dp"
+                android:backgroundTint="@color/gray"/>
+
+            <ImageButton
+                android:id="@+id/is_male"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/male"
+                android:background="@color/white"
+                android:scaleType="center"
+                android:layout_gravity="right"
+                android:backgroundTint="@color/gray"
+                android:layout_marginLeft="20dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/gender_next"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="@dimen/login_comfirm_button_margin_top"
+                android:layout_marginTop="150dp"
+                android:layout_marginRight="@dimen/login_comfirm_button_margin_top"
+                android:layout_marginBottom="@dimen/login_comfirm_button_margin_top"
+                android:background="#4CAF50"
+                android:gravity="center"
+                android:text="下一步"
+                android:textColor="@color/white"
+                android:textSize="@dimen/login_comfirm_button_text_size" />
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

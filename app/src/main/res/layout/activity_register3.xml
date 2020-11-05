@@ -43,6 +43,7 @@
             android:orientation="vertical">
 
             <ImageButton
+                android:id="@+id/update_photo"
                 android:layout_width="115dp"
                 android:layout_height="80dp"
                 android:layout_gravity="center"

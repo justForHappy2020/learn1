@@ -34,7 +34,7 @@ public class register1 extends AppCompatActivity implements View.OnClickListener
     private EditText etPhoneNum;
     private Button btAcquireCode;
 
-    private SharedPreferences saveSP;
+    //private SharedPreferences saveSP;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class register1 extends AppCompatActivity implements View.OnClickListener
     private void initView(){
         etPhoneNum = findViewById(R.id.phone_num);
         btAcquireCode = findViewById(R.id.acquire_vcode);
-        saveSP = super.getSharedPreferences("saved_mobile",MODE_PRIVATE);
+        //saveSP = getSharedPreferences("saved_mobile",MODE_PRIVATE);
         btAcquireCode.setOnClickListener(this);//监听获取验证码按钮
         btAcquireCode.setBackgroundColor(Color.GRAY);
         btAcquireCode.setEnabled(Boolean.FALSE);
@@ -57,34 +57,29 @@ public class register1 extends AppCompatActivity implements View.OnClickListener
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
-
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (!TextUtils.isEmpty(etPhoneNum.getText()) && !TextUtils.isEmpty(etPhoneNum.getText())) {
                     btAcquireCode.setBackgroundColor(Color.parseColor("#4CAF50"));
                     btAcquireCode.setEnabled(Boolean.TRUE);//启用按钮
-
                 }else{
                     //btAcquireCode.setBackgroundColor(Color.GREEN);
                     btAcquireCode.setBackgroundColor(Color.GRAY);
                     btAcquireCode.setEnabled(Boolean.FALSE);//不启用按钮
                 }
             }
-
             @Override
             public void afterTextChanged(Editable editable) {
             }
-
         });
     }
 
 
     public void onClick(View view){
         final String mobile = etPhoneNum.getText().toString().trim();
-        SharedPreferences.Editor editor = saveSP.edit();//获取SharedPreferences实例保存数据
+        //SharedPreferences.Editor editor = saveSP.edit();//获取SharedPreferences实例保存数据
         Intent intent2 = new Intent(this,register2.class);
-        intent2.putExtra("mobile",mobile);
         if(mobile.length()!=11){
             Intent intent1 = new Intent(this, register1.class);
             startActivity(intent1);
@@ -92,8 +87,6 @@ public class register1 extends AppCompatActivity implements View.OnClickListener
             Toast.makeText(this,  "手机号格式不正确，请重新输入", Toast.LENGTH_SHORT).show();
         }
         else {
-            editor.putString("phoneNumber",mobile);//保存手机号在本地
-
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -122,7 +115,6 @@ public class register1 extends AppCompatActivity implements View.OnClickListener
                         e.printStackTrace();
                     }
                 }
-
                 private void getfeedback(String responseData) {
                     try {
                         JSONObject jsonObject1 = new JSONObject(responseData);
@@ -138,9 +130,10 @@ public class register1 extends AppCompatActivity implements View.OnClickListener
                         e.printStackTrace();
                     }
                 }
-
             }).start();
 
+            //editor.putString("mobile",mobile);//保存手机号在本地
+            intent2.putExtra("mobile",mobile);
             startActivity(intent2);
         }
     }
