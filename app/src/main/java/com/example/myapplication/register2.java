@@ -38,6 +38,7 @@ public class register2 extends AppCompatActivity implements View.OnClickListener
     private SharedPreferences saveSP;
 
     private Long userId;
+    private String token;
     private Boolean isNewUser;
 /*    private SharedPreferences readSP;*/
 
@@ -199,12 +200,14 @@ public class register2 extends AppCompatActivity implements View.OnClickListener
                                     //相应的内容
                                     isNewUser = jsonObject.getBoolean("isNewUser");
                                     userId = jsonObject.getLong("userId");
+                                    token = jsonObject.getString("token");
                                 }
                             } catch (JSONException e){
                                 e.printStackTrace();
                             }
                             SharedPreferences.Editor editor = saveSP.edit();
                             editor.putLong("userId",userId);
+                            editor.putString("token",token);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

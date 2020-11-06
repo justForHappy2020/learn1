@@ -67,7 +67,7 @@
             android:focusable="true"
             android:gravity="center_vertical"
             android:hint="@string/hint_weight"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:paddingLeft="@dimen/dd_dimen_6px"
             android:paddingRight="@dimen/dd_dimen_6px" />
 
@@ -106,7 +106,7 @@
             android:focusable="true"
             android:gravity="center_vertical"
             android:hint="@string/hint_height"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:maxLines="1"
             android:paddingLeft="@dimen/dd_dimen_6px"
             android:paddingRight="@dimen/dd_dimen_6px" />

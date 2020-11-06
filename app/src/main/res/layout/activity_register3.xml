@@ -67,7 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:text="请输入昵称"/>
+                android:hint="请输入昵称"/>
 
             <Button
                 android:id="@+id/name_next"

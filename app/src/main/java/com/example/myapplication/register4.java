@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -50,12 +52,20 @@ public class register4 extends AppCompatActivity implements View.OnClickListener
 
     public void onClick(View view) {
         String gender = "m".trim();
+        //int tint = Color.parseColor("cyan");
+        ibIsMale.setBackgroundColor(Color.parseColor("#4CAF50"));
         switch (view.getId()) {
             case R.id.is_female:
                 gender = "w".trim();
+                ibIsFemale.setBackgroundColor(Color.parseColor("#4CAF50"));
+                ibIsMale.setBackgroundColor(Color.WHITE);
+                //ibIsFemale.getBackground().setColorFilter(tint, PorterDuff.Mode.DARKEN);
                 break;
             case R.id.is_male:
                 gender = "m".trim();
+                ibIsMale.setBackgroundColor(Color.parseColor("#4CAF50"));
+                ibIsFemale.setBackgroundColor(Color.WHITE);
+                //ibIsMale.getBackground().setColorFilter(tint, PorterDuff.Mode.DARKEN);
                 break;
             case R.id.gender_next:
                 Intent intent2 = new Intent(this, register5.class);
