@@ -111,7 +111,7 @@ public class register5 extends AppCompatActivity implements View.OnClickListener
                             JSONArray jsonArray = jsonObject1.getJSONArray("data");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                //相应的内容
+                                //相应的内容11
                                 token = jsonObject.getString("token");
                             }
                         } catch (JSONException e) {
