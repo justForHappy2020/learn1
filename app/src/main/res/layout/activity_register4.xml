@@ -50,21 +50,19 @@
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="left"
-                android:background="@color/white"
                 android:scaleType="center"
-                android:src="@drawable/female"
+                android:src="@drawable/female_selector"
                 android:layout_marginRight="10dp"
-                android:backgroundTint="@color/gray"/>
+                android:backgroundTint="@color/white"/>
 
             <ImageButton
                 android:id="@+id/is_male"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/male"
-                android:background="@color/white"
+                android:src="@drawable/male_selector"
                 android:scaleType="center"
                 android:layout_gravity="right"
-                android:backgroundTint="@color/gray"
+                android:backgroundTint="@color/white"
                 android:layout_marginLeft="20dp"
                 />
         </LinearLayout>

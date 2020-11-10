@@ -23,6 +23,7 @@ public class register4 extends AppCompatActivity implements View.OnClickListener
     private Intent intentAccept;
     private String file_url;
     private String nickName;
+    private String gender;
 
 
     @Override
@@ -48,24 +49,23 @@ public class register4 extends AppCompatActivity implements View.OnClickListener
         intentAccept = getIntent();
         file_url = intentAccept.getStringExtra("file_url");
         nickName = intentAccept.getStringExtra("nickName");
+        gender = "m".trim();
     }
 
     public void onClick(View view) {
-        String gender = "m".trim();
-        //int tint = Color.parseColor("cyan");
-        ibIsMale.setBackgroundColor(Color.parseColor("#4CAF50"));
+        int tint1 = Color.parseColor("#4CAF50");
+        int tint2 = Color.WHITE;
+        ibIsMale.getBackground().setColorFilter(tint1, PorterDuff.Mode.DARKEN);
         switch (view.getId()) {
             case R.id.is_female:
                 gender = "w".trim();
-                ibIsFemale.setBackgroundColor(Color.parseColor("#4CAF50"));
-                ibIsMale.setBackgroundColor(Color.WHITE);
-                //ibIsFemale.getBackground().setColorFilter(tint, PorterDuff.Mode.DARKEN);
+                ibIsFemale.getBackground().setColorFilter(tint1, PorterDuff.Mode.DARKEN);
+                ibIsMale.getBackground().setColorFilter(tint2, PorterDuff.Mode.DARKEN);
                 break;
             case R.id.is_male:
                 gender = "m".trim();
-                ibIsMale.setBackgroundColor(Color.parseColor("#4CAF50"));
-                ibIsFemale.setBackgroundColor(Color.WHITE);
-                //ibIsMale.getBackground().setColorFilter(tint, PorterDuff.Mode.DARKEN);
+                ibIsMale.getBackground().setColorFilter(tint1, PorterDuff.Mode.DARKEN);
+                ibIsFemale.getBackground().setColorFilter(tint2, PorterDuff.Mode.DARKEN);
                 break;
             case R.id.gender_next:
                 Intent intent2 = new Intent(this, register5.class);

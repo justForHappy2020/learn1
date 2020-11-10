@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import java.util.Timer;
@@ -12,21 +13,30 @@ public class MainActivity extends AppCompatActivity {
 
     private static final long DELAY = 600;
     private TimerTask task;
-
-
+    private String token;
+    private SharedPreferences readSP;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Intent intent = new Intent(this,register1.class);
+        final Intent intent1 = new Intent(this,register1.class);
+        final Intent intent2 = new Intent(this,course_main.class);
         Timer timer = new Timer();
         task = new TimerTask() {
             @Override
             public void run() {
-                startActivity(intent);
+                readSP = getSharedPreferences("saved_token",MODE_PRIVATE);
+                token = readSP.getString("token","");
+                if(token == "")startActivity(intent1);
+                else {
+                    intent2.putExtra("token",token);
+                    startActivity(intent2);
+                }
             }
         };
         timer.schedule(task,DELAY);
+
+
     }
 }
