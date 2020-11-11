@@ -73,6 +73,7 @@ public class register5 extends AppCompatActivity implements View.OnClickListener
     }
 
     public void onClick(View view){
+        Intent intent = new Intent(this,course_main.class);
         if(etRegWeight.getText().toString().trim()!=null)weight = Double.parseDouble(etRegWeight.getText().toString().trim());
         if(etRegHeight.getText().toString().trim()!=null)height = Double.parseDouble(etRegHeight.getText().toString().trim());
         if(weight*10%1 == 0&&height*10%1 == 0) {
@@ -99,7 +100,7 @@ public class register5 extends AppCompatActivity implements View.OnClickListener
                         OkHttpClient client = new OkHttpClient();
                         RequestBody requestBody = RequestBody.create(JSON, String.valueOf(json));
                         Request request = new Request.Builder()
-                                .url("http://127.0.0.1:8080/api/user/uploadImage")
+                                .url("http://127.0.0.1:8080/api/user/setProfile")
                                 .post(requestBody)
                                 .build();
                         Response response = client.newCall(request).execute();
@@ -125,7 +126,7 @@ public class register5 extends AppCompatActivity implements View.OnClickListener
                 }
 
             }).start();
-
+            startActivity(intent);
         }
         else Toast.makeText(this,  "最多一位小数，请重新输入", Toast.LENGTH_SHORT).show();
     }

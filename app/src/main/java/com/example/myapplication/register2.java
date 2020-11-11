@@ -18,7 +18,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.security.Key;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -111,7 +110,7 @@ public class register2 extends AppCompatActivity implements View.OnClickListener
     }
     public void onClick(View view){
         Intent intent = new Intent(this,register3.class);
-        Intent intent2 = new Intent(this,MainActivity.class);
+        Intent intent2 = new Intent(this, course_main.class);
         final String mobile = intentAccept.getStringExtra("mobile");
         switch (view.getId()){
             case R.id.require_again:

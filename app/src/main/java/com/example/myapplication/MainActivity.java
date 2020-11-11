@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         final Intent intent1 = new Intent(this,register1.class);
         final Intent intent2 = new Intent(this,course_main.class);
-        Timer timer = new Timer();
+/*        Timer timer = new Timer();
         task = new TimerTask() {
             @Override
             public void run() {
@@ -35,8 +35,14 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
-        timer.schedule(task,DELAY);
-
+        timer.schedule(task,DELAY);*/
+        readSP = getSharedPreferences("saved_token",MODE_PRIVATE);
+        token = readSP.getString("token","");
+        if(token == "")startActivity(intent1);
+        else {
+            intent2.putExtra("token",token);
+            startActivity(intent2);
+        }
 
     }
 }
