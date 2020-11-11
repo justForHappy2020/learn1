@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:src="@drawable/scenery" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="燃脂"
+                android:gravity="center"
+                android:textSize="25dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="38千卡"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="时长"
+                android:gravity="center"
+                android:textSize="25dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="188 分钟"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="难度"
+                android:gravity="center"
+                android:textSize="25dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="K2 初学"/>
+
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="课程介绍"
+            android:textSize="20dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="全球流行的瘦腿动作"
+            android:maxEms="2"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="建议每周4到5次"
+            android:maxEms="2"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="加油，你是最棒的"
+            android:maxEms="2"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="相关训练"
+        android:textSize="20dp"
+        android:paddingLeft="10dp"/>
+
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
+        <LinearLayout
+            android:orientation="horizontal" android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                />
+
+
+
+            <Button android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Button One"
+                android:layout_marginHorizontal="5dp"
+                style="@style/SmsButton"
+                android:background="@drawable/ocean"/>
+            <Button android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ocean"
+                android:layout_marginHorizontal="5dp"
+                android:text="Button Two" />
+            <Button android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ocean"
+                android:layout_marginHorizontal="5dp"
+                android:text="Button Three" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ocean"
+                android:layout_marginHorizontal="5dp"
+                android:text="Button Four" />
+
+            <Button android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ocean"
+                android:layout_marginHorizontal="5dp"
+                android:text="Button Five" />
+            <Button android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ocean"
+                android:layout_marginHorizontal="5dp"
+                android:text="Button Six" />
+            <Button android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ocean"
+                android:layout_marginHorizontal="5dp"
+                android:text="Button Seven" />
+            <Button android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ocean"
+                android:layout_marginHorizontal="5dp"
+                android:text="Button Eight" />
+            <Button android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ocean"
+                android:layout_marginHorizontal="5dp"
+                android:text="Button Nine" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+
+
+    <Button
+        android:id="@+id/play_video"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="10dp"
+        android:background="#4CAF50"
+        android:layout_marginTop="10dp"
+
+        android:gravity="center"
+        android:text="参加课程"
+        android:textColor="@color/white"
+        android:textSize="@dimen/login_comfirm_button_text_size" />
+
+
+</LinearLayout>
+
