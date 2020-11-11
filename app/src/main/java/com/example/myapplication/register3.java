@@ -41,8 +41,6 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;

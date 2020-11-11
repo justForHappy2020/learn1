@@ -6,13 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".register3">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="465dp"
+            android:layout_height="694dp"
+            android:src="@drawable/start4"
+            tools:layout_editor_absoluteX="-27dp"
+            tools:layout_editor_absoluteY="-9dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Keep Plus"
+            android:textSize="40dp"
+            android:gravity="center"/>
+
+
+
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,12 +3,9 @@ package com.example.myapplication;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Message;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -79,7 +76,7 @@ public class register1 extends AppCompatActivity implements View.OnClickListener
     public void onClick(View view){
         final String mobile = etPhoneNum.getText().toString().trim();
         //SharedPreferences.Editor editor = saveSP.edit();//获取SharedPreferences实例保存数据
-        Intent intent2 = new Intent(this,register2.class);
+        Intent intent2 = new Intent(this, register2.class);
         if(mobile.length()!=11){
             Intent intent1 = new Intent(this, register1.class);
             startActivity(intent1);

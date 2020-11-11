@@ -57,10 +57,10 @@ public class register2 extends AppCompatActivity implements View.OnClickListener
             public void run() {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.showSoftInput(etVcode,InputMethodManager.SHOW_FORCED);
-                etVcode.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener(){
+                etVcode.setOnFocusChangeListener(new View.OnFocusChangeListener(){
                     @Override
                     public void onFocusChange(View v, boolean hasFocus) {
-                        if(hasFocus)KeyboardUtils.showKeyboard(etVcode);
+                        if(hasFocus) KeyboardUtils.showKeyboard(etVcode);
                         else KeyboardUtils.hideKeyboard(etVcode);
                     }
                 });
@@ -109,7 +109,7 @@ public class register2 extends AppCompatActivity implements View.OnClickListener
 
     }
     public void onClick(View view){
-        Intent intent = new Intent(this,register3.class);
+        Intent intent = new Intent(this, register3.class);
         Intent intent2 = new Intent(this, course_main.class);
         final String mobile = intentAccept.getStringExtra("mobile");
         switch (view.getId()){

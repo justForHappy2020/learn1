@@ -73,7 +73,7 @@ public class register5 extends AppCompatActivity implements View.OnClickListener
     }
 
     public void onClick(View view){
-        Intent intent = new Intent(this,course_main.class);
+        Intent intent = new Intent(this, course_main.class);
         if(etRegWeight.getText().toString().trim()!=null)weight = Double.parseDouble(etRegWeight.getText().toString().trim());
         if(etRegHeight.getText().toString().trim()!=null)height = Double.parseDouble(etRegHeight.getText().toString().trim());
         if(weight*10%1 == 0&&height*10%1 == 0) {
