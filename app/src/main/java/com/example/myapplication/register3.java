@@ -246,7 +246,7 @@ public class register3 extends AppCompatActivity implements View.OnClickListener
                 Uri photoUri = data.getData();//获取路径
                 final String filename = photoUri.getPath();
                 final String filepath = getRealPathFromUriAboveApi19(this,photoUri);//获取绝对路径
-                final String httpurl = "http://127.0.0.1:8080/api/user/uploadImage";
+                final String httpurl = "http://192.168.16.1:8080/api/user/uploadImage";
 
 
                 //http请求
@@ -254,17 +254,13 @@ public class register3 extends AppCompatActivity implements View.OnClickListener
                     @Override
                     public void run() {
                         try {
-                            String responseData = upload(httpurl,filepath,filename).string();
+                            String responseData = upload(httpurl,filepath,filename).string();//http请求
                             try {
                                 JSONObject jsonObject1 = new JSONObject(responseData);
-                                JSONArray jsonArray = jsonObject1.getJSONArray("data");
-                                for (int i = 0; i < jsonArray.length(); i++) {
-                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
                                     //相应的内容
-                                    String url = jsonObject.getString("data");//URL?
+                                    String url = jsonObject1.getString("data");//URL?
                                     SharedPreferences.Editor editor = saveSP.edit();
                                     editor.putString("url",url);
-                                }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -422,48 +418,6 @@ public class register3 extends AppCompatActivity implements View.OnClickListener
                     Toast.makeText(this, "昵称过长，请重新输入", Toast.LENGTH_SHORT).show();
                 } else {
                     //editor.putString("mobile",mobile);//保存手机号在本地
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                //设置JSON数据
-                                MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-                                JSONObject json = new JSONObject();
-                                try {
-                                    json.put("headPortrait", headPortrait);
-                                    json.put("filename", filename);
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                                //okhttp请求
-                                OkHttpClient client = new OkHttpClient();
-                                RequestBody requestBody = RequestBody.create(JSON, String.valueOf(json));
-                                Request request = new Request.Builder()
-                                        .url("http://127.0.0.1:8080/api/user/uploadImage")
-                                        .post(requestBody)
-                                        .build();
-                                Response response = client.newCall(request).execute();
-                                if (!response.isSuccessful())
-                                    throw new IOException("Unexpected code" + response);
-                                String responseData = response.body().string();
-                                try {
-                                    JSONObject jsonObject1 = new JSONObject(responseData);
-                                    JSONArray jsonArray = jsonObject1.getJSONArray("data");
-                                    for (int i = 0; i < jsonArray.length(); i++) {
-                                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                        //相应的内容
-                                        file_url = jsonObject.getString("file_url");
-                                    }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                    }).start();
-                    intent2.putExtra("file_url", file_url);
                     intent2.putExtra("nickName", nickName);
                     startActivity(intent2);
                     break;

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.example.myapplication.utils.HttpUtils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -41,6 +42,7 @@ public class register5 extends AppCompatActivity implements View.OnClickListener
     private EditText etRegHeight;
     private Button btRegNext;
     private SharedPreferences readSP;
+    private SharedPreferences readSP2;
     private SharedPreferences saveSP;
 
 
@@ -61,19 +63,21 @@ public class register5 extends AppCompatActivity implements View.OnClickListener
         btRegNext.setOnClickListener(this);
 
         saveSP = getSharedPreferences("saved_token",MODE_PRIVATE);
+
     }
 
     private void initData() {
         intentAccept = getIntent();
-        file_url = intentAccept.getStringExtra("file_url");
         nickName = intentAccept.getStringExtra("nickName");
         gender = intentAccept.getStringExtra("gender");
         readSP = getSharedPreferences("saved_mobile",MODE_PRIVATE);
+        readSP2 = getSharedPreferences("saved_photo",MODE_PRIVATE);
         userId = readSP.getLong("userId",0);
+        file_url = readSP2.getString("url","");
     }
 
     public void onClick(View view){
-        Intent intent = new Intent(this, course_main.class);
+        Intent intent = new Intent(this, exercise_main.class);
         if(etRegWeight.getText().toString().trim()!=null)weight = Double.parseDouble(etRegWeight.getText().toString().trim());
         if(etRegHeight.getText().toString().trim()!=null)height = Double.parseDouble(etRegHeight.getText().toString().trim());
         if(weight*10%1 == 0&&height*10%1 == 0) {
@@ -83,7 +87,6 @@ public class register5 extends AppCompatActivity implements View.OnClickListener
                 public void run() {
                     try {
                         //设置JSON数据
-                        MediaType JSON = MediaType.parse("application/json; charset=utf-8");
                         JSONObject json = new JSONObject();
                         try {
                             json.put("userId", userId);
@@ -96,31 +99,19 @@ public class register5 extends AppCompatActivity implements View.OnClickListener
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        //okhttp请求
-                        OkHttpClient client = new OkHttpClient();
-                        RequestBody requestBody = RequestBody.create(JSON, String.valueOf(json));
-                        Request request = new Request.Builder()
-                                .url("http://127.0.0.1:8080/api/user/setProfile")
-                                .post(requestBody)
-                                .build();
-                        Response response = client.newCall(request).execute();
-                        if (!response.isSuccessful())
-                            throw new IOException("Unexpected code" + response);
-                        String responseData = response.body().string();
+                        String responseData = HttpUtils.connectHttp("http://192.168.16.1:8080/api/user/setProfile",json);
                         try {
                             JSONObject jsonObject1 = new JSONObject(responseData);
-                            JSONArray jsonArray = jsonObject1.getJSONArray("data");
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 //相应的内容
-                                token = jsonObject.getString("token");
-                            }
+                                token = jsonObject1.getString("token");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                         SharedPreferences.Editor editor = saveSP.edit();
                         editor.putString("token",token);
                     } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }

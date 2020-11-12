@@ -14,17 +14,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.myapplication.utils.HttpUtils;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+
+import static com.example.myapplication.utils.HttpUtils.connectHttp;
 
 public class register1 extends AppCompatActivity implements View.OnClickListener{
 
@@ -89,40 +94,38 @@ public class register1 extends AppCompatActivity implements View.OnClickListener
                 public void run() {
                     try {
                         //设置JSON数据
-                        MediaType JSON = MediaType.parse("application/json; charset=utf-8");
                         JSONObject json = new JSONObject();
                         try {
                             json.put("phoneNumber", mobile);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        //okhttp请求
-                        OkHttpClient client = new OkHttpClient();
-                        RequestBody requestBody = RequestBody.create(JSON, String.valueOf(json));
-                        Request request = new Request.Builder()
-                                .url("http://127.0.0.1:8080/api/user/getCode")
-                                .post(requestBody)
-                                .build();
-                        Response response = client.newCall(request).execute();
-                        if (!response.isSuccessful())
-                            throw new IOException("Unexpected code" + response);
-                        String responseData = response.body().string();
+                        String url = "http://192.168.16.1:8080/api/user/getCode";
+                        String responseData = connectHttp(url,json);
                         getfeedback(responseData);
                     } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
                 private void getfeedback(String responseData) {
                     try {
+                        //解析JSON数据
                         JSONObject jsonObject1 = new JSONObject(responseData);
-                        JSONArray jsonArray = jsonObject1.getJSONArray("data");
+                        String message = jsonObject1.getString("message");
+                        Object data = jsonObject1.getJSONObject("data");
+                        int code = jsonObject1.getInt("code");
+/*                        JSONArray jsonArray = jsonObject1.getJSONArray("codes");
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
                             //相应的内容
                             String message = jsonObject.getString("message");
                             Object data = jsonObject.getJSONObject("data");
                             int code = jsonObject.getInt("code");
-                        }
+                        }*/
+
+
                     } catch (JSONException e){
                         e.printStackTrace();
                     }
