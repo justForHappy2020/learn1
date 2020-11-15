@@ -21,6 +21,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.MediaType;
@@ -36,6 +38,7 @@ public class register1 extends AppCompatActivity implements View.OnClickListener
     private EditText etPhoneNum;
     private Button btAcquireCode;
 
+    private int httpcode;
     //private SharedPreferences saveSP;
 
     @Override
@@ -81,7 +84,7 @@ public class register1 extends AppCompatActivity implements View.OnClickListener
     public void onClick(View view){
         final String mobile = etPhoneNum.getText().toString().trim();
         //SharedPreferences.Editor editor = saveSP.edit();//获取SharedPreferences实例保存数据
-        Intent intent2 = new Intent(this, register2.class);
+        final Intent intent2 = new Intent(this, register2.class);
         if(mobile.length()!=11){
             Intent intent1 = new Intent(this, register1.class);
             startActivity(intent1);
@@ -89,7 +92,7 @@ public class register1 extends AppCompatActivity implements View.OnClickListener
             Toast.makeText(this,  "手机号格式不正确，请重新输入", Toast.LENGTH_SHORT).show();
         }
         else {
-            new Thread(new Runnable() {
+            Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try {
@@ -108,20 +111,21 @@ public class register1 extends AppCompatActivity implements View.OnClickListener
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                    if(httpcode==200){
+                        intent2.putExtra("mobile",mobile);
+                        startActivity(intent2);
+                    }
                 }
                 private void getfeedback(String responseData) {
                     try {
                         //解析JSON数据
                         JSONObject jsonObject1 = new JSONObject(responseData);
-                        String message = jsonObject1.getString("message");
-                        Object data = jsonObject1.getJSONObject("data");
-                        int code = jsonObject1.getInt("code");
+                        httpcode = jsonObject1.getInt("code");
 /*                        JSONArray jsonArray = jsonObject1.getJSONArray("codes");
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
                             //相应的内容
                             String message = jsonObject.getString("message");
-                            Object data = jsonObject.getJSONObject("data");
                             int code = jsonObject.getInt("code");
                         }*/
 
@@ -130,11 +134,15 @@ public class register1 extends AppCompatActivity implements View.OnClickListener
                         e.printStackTrace();
                     }
                 }
-            }).start();
-
-            //editor.putString("mobile",mobile);//保存手机号在本地
-            intent2.putExtra("mobile",mobile);
-            startActivity(intent2);
+            });
+            thread.start();
+            try {
+                thread.join(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if(httpcode!=200)Toast.makeText(register1.this,"ERROR",Toast.LENGTH_SHORT).show();
         }
+            //editor.putString("mobile",mobile);//保存手机号在本地
     }
 }

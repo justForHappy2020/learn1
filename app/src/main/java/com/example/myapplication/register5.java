@@ -37,6 +37,7 @@ public class register5 extends AppCompatActivity implements View.OnClickListener
     private Double weight;
     private Double height;
     private String token;
+    private int httpCode;
 
     private EditText etRegWeight;
     private EditText etRegHeight;
@@ -82,7 +83,7 @@ public class register5 extends AppCompatActivity implements View.OnClickListener
         if(etRegHeight.getText().toString().trim()!=null)height = Double.parseDouble(etRegHeight.getText().toString().trim());
         if(weight*10%1 == 0&&height*10%1 == 0) {
             //http请求
-            new Thread(new Runnable() {
+            Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try {
@@ -103,7 +104,12 @@ public class register5 extends AppCompatActivity implements View.OnClickListener
                         try {
                             JSONObject jsonObject1 = new JSONObject(responseData);
                                 //相应的内容
-                                token = jsonObject1.getString("token");
+                                httpCode = jsonObject1.getInt("code");
+                                if(httpCode==200)
+                                {
+                                    JSONObject jsonObject2 = jsonObject1.getJSONObject("data");
+                                    token = jsonObject2.getString("token");
+                                }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -116,7 +122,15 @@ public class register5 extends AppCompatActivity implements View.OnClickListener
                     }
                 }
 
-            }).start();
+            });
+            thread.start();
+            try {
+                thread.join(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if(httpCode!=200)Toast.makeText(this,  "保存信息失败", Toast.LENGTH_SHORT).show();
+            if(httpCode==200)Toast.makeText(this,  "保存信息成功", Toast.LENGTH_SHORT).show();
             startActivity(intent);
         }
         else Toast.makeText(this,  "最多一位小数，请重新输入", Toast.LENGTH_SHORT).show();
