@@ -42,6 +42,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
 
+
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -113,7 +114,7 @@ public class register3 extends AppCompatActivity implements View.OnClickListener
         btNameNext.setOnClickListener(this);
         ibUpdatePhoto.setOnClickListener(this);
 
-        saveSP = getSharedPreferences("saved_photo",MODE_PRIVATE);
+        saveSP = getSharedPreferences("saved_photo",Context.MODE_PRIVATE);
 
         //昵称框有输入才可以点下一步
         tvName.addTextChangedListener(new TextWatcher() {
@@ -247,7 +248,7 @@ public class register3 extends AppCompatActivity implements View.OnClickListener
                 Uri photoUri = data.getData();//获取路径
                 //final String filename = photoUri.getPath();
                 final String filepath = getRealPathFromUriAboveApi19(this,photoUri);//获取绝对路径
-                final String httpurl = "http://192.168.16.1:8080/api/user/uploadImage";
+                final String httpurl = "http://192.168.16.1:8080/api/user/uploadImageAndroid";
 
 
                 //http请求
@@ -259,14 +260,16 @@ public class register3 extends AppCompatActivity implements View.OnClickListener
                             try {
                                 JSONObject jsonObject1 = new JSONObject(responseData);
                                     //相应的内容
-                                    String url = jsonObject1.getString("url");//URL?
-                                    httpCode = jsonObject1.getInt("code");
-                                    if(httpCode == 200){
-                                        SharedPreferences.Editor editor = saveSP.edit();
-                                        editor.putString("url",url);
+                                httpCode = jsonObject1.getInt("code");
+                                if(httpCode == 200){
+                                    String url = jsonObject1.getString("data");//URL?
+                                    SharedPreferences.Editor editor = saveSP.edit();
+                                    editor.putString("url",url);
+                                    if (!editor.commit()) {
+                                        System.out.println("ERROR commit");
                                     }
+                                }
                             } catch (JSONException e) {
-                                Toast.makeText(register3.this,"ERROR",Toast.LENGTH_SHORT).show();
                                 e.printStackTrace();
                             }
                         } catch (Exception e) {

@@ -52,7 +52,6 @@ public class register1 extends AppCompatActivity implements View.OnClickListener
     private void initView(){
         etPhoneNum = findViewById(R.id.phone_num);
         btAcquireCode = findViewById(R.id.acquire_vcode);
-        //saveSP = getSharedPreferences("saved_mobile",MODE_PRIVATE);
         btAcquireCode.setOnClickListener(this);//监听获取验证码按钮
         btAcquireCode.setBackgroundColor(Color.GRAY);
         btAcquireCode.setEnabled(Boolean.FALSE);

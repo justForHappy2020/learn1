@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -63,7 +64,7 @@ public class register5 extends AppCompatActivity implements View.OnClickListener
 
         btRegNext.setOnClickListener(this);
 
-        saveSP = getSharedPreferences("saved_token",MODE_PRIVATE);
+        saveSP = getSharedPreferences("saved_token",Context.MODE_PRIVATE);
 
     }
 
@@ -71,8 +72,8 @@ public class register5 extends AppCompatActivity implements View.OnClickListener
         intentAccept = getIntent();
         nickName = intentAccept.getStringExtra("nickName");
         gender = intentAccept.getStringExtra("gender");
-        readSP = getSharedPreferences("saved_mobile",MODE_PRIVATE);
-        readSP2 = getSharedPreferences("saved_photo",MODE_PRIVATE);
+        readSP = getSharedPreferences("saved_token", Context.MODE_PRIVATE);
+        readSP2 = getSharedPreferences("saved_photo",Context.MODE_PRIVATE);
         userId = readSP.getLong("userId",0);
         file_url = readSP2.getString("url","");
     }
@@ -114,7 +115,7 @@ public class register5 extends AppCompatActivity implements View.OnClickListener
                             e.printStackTrace();
                         }
                         SharedPreferences.Editor editor = saveSP.edit();
-                        editor.putString("token",token);
+                        editor.putString("token",token).commit();
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (Exception e) {

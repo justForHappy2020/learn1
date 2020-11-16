@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -93,7 +94,7 @@ public class register2 extends AppCompatActivity implements View.OnClickListener
         btNameNext = findViewById(R.id.name_next);
         tvRequireAgain = findViewById(R.id.require_again);
 
-        saveSP = getSharedPreferences("saved_token",MODE_PRIVATE);
+        saveSP = getSharedPreferences("saved_token",Context.MODE_PRIVATE);
 
 /*        //弹出小键盘
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -201,8 +202,8 @@ public class register2 extends AppCompatActivity implements View.OnClickListener
                                 e.printStackTrace();
                             }
                             SharedPreferences.Editor editor = saveSP.edit();
-                            editor.putLong("userId",userId);
-                            editor.putString("token",token);
+                            editor.putLong("userId",userId).commit();
+                            editor.putString("token",token).commit();
                         } catch (IOException e) {
                             e.printStackTrace();
                         } catch (Exception e) {

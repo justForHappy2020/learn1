@@ -130,18 +130,21 @@
                 />
 
 
-
-            <Button android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button One"
-                android:layout_marginHorizontal="5dp"
+            <Button
                 style="@style/SmsButton"
-                android:background="@drawable/ocean"/>
-            <Button android:layout_width="wrap_content"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/ocean"
                 android:layout_marginHorizontal="5dp"
+                android:background="@drawable/ocean"
+                android:text="Button One" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/ocean"
                 android:text="Button Two" />
+
             <Button android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ocean"

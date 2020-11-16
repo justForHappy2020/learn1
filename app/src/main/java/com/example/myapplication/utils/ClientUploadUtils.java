@@ -18,6 +18,7 @@ public class ClientUploadUtils {
         OkHttpClient client = new OkHttpClient();
         File file = new File(filePath);
         String fileName = file.getName();
+
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("file", fileName,
